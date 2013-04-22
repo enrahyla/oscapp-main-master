@@ -1,0 +1,6 @@
+  <ul>
+    <% @diaries.each do |Diary| %>
+  <li><%= link_to Diary.title, 
+    :action => 'show', :id => Diary.id  %></li>
+  <% end %>
+  </ul>

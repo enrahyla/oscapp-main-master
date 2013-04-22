@@ -1,0 +1,7 @@
+<% if @event.complete? %>
+  $('#edit_event_<%= @event.id %>').appendTo('#edit_events');
+<% else %>
+  $('#edit_event_<%= @event.id %>').appendTo('#edit_events');
+<% end %>
+
+$('#edit_event').hide().after('<%= j render("form") %>');

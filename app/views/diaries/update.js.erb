@@ -1,0 +1,7 @@
+<% if @diary.complete? %>
+  $('#edit_diary_<%= @diary.id %>').appendTo('#edit_diary');
+<% else %>
+  $('#edit_diary_<%= @diary.id %>').appendTo('#edit_diary');
+<% end %>
+
+$('#edit_diary').hide().after('<%= j render("form") %>');

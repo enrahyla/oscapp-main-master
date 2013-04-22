@@ -1,0 +1,4 @@
+$('#new_event').remove();
+$('#new_link').show();
+$('#incomplete_events').append('<%= j render(@event) %>');
+$('#edit_event_<%= @event.id %>').submitOnCheck();

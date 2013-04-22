@@ -1,0 +1,68 @@
+<% content_for :head,
+auto_discovery_link_tag(:xml, 
+diaries_url(format: "xml")) %>
+
+<div class="container">
+
+        <!-- start of diaries database-->
+
+        <%- model_class = Diary -%>
+<div class="page-header">
+  <h1>Dates for the Diary</h1>
+   <%= link_to image_tag('feed-icon-14x14.png'), diaries_url(format: :xml) %>
+</div>  
+
+
+<!--<a class="btn btn-large" href="search">Search</a>-->
+
+<%= form_tag diaries_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+<!-- rest of view omitted -->
+
+<% if logged_in? %>
+ <!-- button for new entry-->
+ <center>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_diary_path,id: "new_link", remote: true,
+            :class => 'btn btn-primary' %>
+            <% end %>
+
+  </center>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:View) %></th>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%= model_class.human_attribute_name(:body) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @diaries.each do |diary| %>
+      <tr>
+        <td><%= link_to diary.id, diary_path(diary) %></td>
+        <td><%= diary.title.strftime("%d/%m/%Y %H:%M")  %></td>
+        <td><%= diary.body %></td>
+
+        <td><%=l diary.created_at, :format => :long %></td>
+        <td>
+          <% if logged_in? %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_diary_path(diary), :class => 'btn btn-mini' %>
+         <%= link_to "remove", diary, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: 'btn btn-mini' %>
+                      <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <!-- end of database-->
+  </tbody>
+</table>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="script.js"></script>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "jquery", "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Oval Ski Club</title><!-- page title-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../assets/mystyles.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="../assets/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/galleria.classic.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+  
+
+      <%= yield :head %>
+      
+  </head>
+   
+  <body>
+  <% yield %>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"> <!--start of container-->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <!--site name-->
+          <a class="brand" href="index" title="Oval Ski Club">Oval Ski Club</a> 
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <!--Home link-->
+              <li><a href="index" accesskey="h" title="Home" >Home</a></li>
+
+              <!-- first drop down box-->
+              <li class="dropdown"> 
+                <a href="#"  title="Information"class="dropdown-toggle" data-toggle="dropdown" title="Information">Information <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+
+                  <li><a href="aboutus" title="About Us"accesskey="a">About Us</a></li>
+
+                  <li><a href="contactus"title="Contact Us" accesskey="c">Contact Us</a></li>
+
+                  <li><a href="faq"title="Frequently Asked Questions" accesskey="q">FAQ's</a></li>
+                </ul>
+              </li>
+
+              <!-- second drop down box-->
+               <li class="dropdown"> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Events">Events <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+
+                  <li><a href="../social"title="Social Events"accesskey="s">Social</a></li>
+
+                  <li><a href="racingteam"title="Racing Team"accesskey="r">Racing Team</a></li>
+
+                  <li><a href="lessons"title="Lessons" accesskey="l">Lessons</a></li>
+                </ul>
+              </li>
+            </ul>
+
+
+         
+
+    
+          <!-- drop down sign in-->
+          <ul class="nav pull-right">
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" title="Sign In">Sign In <strong class="caret"></strong></a>
+
+            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px;">
+
+              <!-- Login form here -->
+            <form action="index">
+              <hr>
+              <h6>
+                <% if logged_in? %>
+                  <%= "Logged in" %>
+                  <%= link_to "(logout)", logout_path %>
+                <% else %>
+                <%= link_to "(login)", login_path %>
+                 <% end %>
+              </h6>
+          </form>
+
+            <div id="user_nav">
+                <% if current_user %>
+                Signed in as <strong><%= current_user.name %></strong>!
+                <%= link_to "Sign out", signout_path, id: "sign_out" %>
+              <% else %>
+                <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+              <% end %>
+            </div>           
+          </div>
+        </div><!--/.nav-collapse -->
+      </div><!--end of container-->
+    </div>
+  </div>
+
+	<p class="flash"><% flash.notice %></p>
+	<%= yield %>
+  <br>
+  <br>
+        <footer>
+         
+
+      <div class="span1"> <!-- facebook link-->
+      <div class="brand">  <a href="https://www.facebook.com/groups/2256597544/"><img src="../assets/fbbutton.jpg" class="brand" title="Facebok Page"></a></div> 
+    </div>
+      <hr>
+      <div class="pagination-centered">
+        <%= link_to image_tag('feed-icon-14x14.png'), events_url(format: :atom) %>
+        <p>&copy; Oval Ski Club 2012</p>
+      </div>
+      </footer>
+    </div> 
+
+
+
+
+</body>
+</html>

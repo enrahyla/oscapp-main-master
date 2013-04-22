@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+      <script src="../assets/galleria-1.2.9.min.js"></script>
+      <script src="../assets/galleria.flickr.min.js"></script>
+
+
+   <style>
+    #galleria{ width: 1000px; height: 700px; background: #000 }
+ </style>
+
+
+
+    </head>
+    <body>
+      <center>
+        <h1>Gallery</h1>
+        <p>Feel free to browse our gallery of Flickr images from past events below</p>
+      <div id="galleria"></div>
+    </center>
+
+ <script>
+    Galleria.loadTheme("<%= javascript_path('galleria.classic.js')%>");
+      var flickr = new Galleria.Flickr();
+      flickr.user('94860928@N06', function(data) {
+          Galleria.run('#galleria', {
+              dataSource: data
+          });
+      });
+ </script>
+    </body>
+</html>

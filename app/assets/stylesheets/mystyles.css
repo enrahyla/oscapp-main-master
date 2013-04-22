@@ -1,0 +1,36 @@
+/* my personal style sheet */
+
+
+/* import of bootstrap*/
+@import url(assets/css/bootstrap.css);
+@import url(assets/css/galleria.classic.css);
+
+/*my own custom styles*/
+
+body
+{
+	background-image:url(../assets/gplaypattern.png);
+}
+
+.hero-unit
+{
+	background-image:url(../assets/heroimage2.jpg);
+	color: #000000
+}
+
+.row
+{
+	color: #000000
+}
+
+table
+{
+	color: #000000
+}
+
+h2
+{
+	color: #000000
+}
+
+

@@ -1,0 +1,47 @@
+
+<%= form_for(@event, html: {multipart: true}) do |f| %>
+
+<div class = "container">
+  <div class = "pagination-centered">
+
+
+<%= form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
+
+ 
+   <p>
+    <%= f.label :tag_list %><br />
+ 
+    
+    <%= f.text_field :tag_list %>
+  </p>  
+
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :body, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :body, :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+
+    <%= f.submit nil, remote: true, :class => 'btn btn-primary' %>
+    <p>
+      <% if @event.image.exists? %>
+      <%= image_tag @event.image.url%><br />
+    <% end %>
+      <%= f.label :image, "Attach an Image" %><br />
+      <%= f.file_field :image %>
+    </p>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                events_path, id: "new_link", :class => 'btn' %>
+  </div>
+</div>
+</div>
+<% end %>
+<% end %>
